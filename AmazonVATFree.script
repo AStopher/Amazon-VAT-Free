@@ -1,0 +1,18 @@
+// ==UserScript==
+// @name         Amazon Show VAT-Free Prices
+// @namespace    http://alexanderstopher.com
+// @version      0.1
+// @description  Shows VAT-free prices on Amazon. Only shows for items in your basket, as well as basket total.
+// @author       Alexander Stopher
+// @match        *.amazon.co.uk/*
+// @grant        none
+// @require      http://code.jquery.com/jquery-1.12.4.min.js
+// ==/UserScript==
+
+(function() {
+    'use strict';
+    var $ = window.jQuery;
+    $(".sc-price").each(function() {
+        $(this).text("£" + (Number(($(this).text().replace(/[^0-9.-]+/g,"")))/1.2).toFixed(2));
+    });
+})();
